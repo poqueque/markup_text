@@ -7,8 +7,9 @@ import 'package:url_launcher/url_launcher.dart';
 class MarkupText extends StatelessWidget {
   final String text;
   final TextAlign textAlign;
+  final TextStyle style;
 
-  const MarkupText(this.text, {Key key, this.textAlign = TextAlign.left})
+  const MarkupText(this.text, {Key key, this.textAlign = TextAlign.left, this.style})
       : super(key: key);
 
   @override
@@ -116,7 +117,7 @@ class MarkupText extends StatelessWidget {
       textDirection: TextDirection.ltr,
       textAlign: textAlign,
       text: TextSpan(
-          style: DefaultTextStyle.of(context).style,
+          style: DefaultTextStyle.of(context).style.merge(style),
           children: partList.map((e) => e.toSpan()).toList()),
     );
   }

@@ -1,0 +1,20 @@
+name: markup_text
+description: Flutter Text widgets with Style
+version: 0.0.1
+author: Eduard Carreras
+homepage: https://github.com/poqueque/markup_text
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  url_launcher: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

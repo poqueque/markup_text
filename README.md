@@ -10,10 +10,6 @@ Flutter widget to use Markup to easily create formatted Text.
 - [Pub Package](https://pub.dev/packages/markup_text)
 - [GitHub Repository](https://github.com/poqueque/markup_text)
 
-## Contents
-c
-- [Usage](#usage)
-
 ## Usage
 
 `MarkupText` is a wrapper for `RichText` that simplifies the creation of text with mixed styles.
@@ -77,7 +73,7 @@ MarkupText("(c amber)You can also use named colors(/c)")
 The tag (c) uses either a color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
 
 | Color Name | Color |
-| ------------- | +-----------+ |
+| ------------- | :-----------: |
 | amber | ![](https://via.placeholder.com/15/FFC107/000000?text=+) |
 | amberAccent | ![](https://via.placeholder.com/15/FFD740/000000?text=+) |
 | black | ![](https://via.placeholder.com/15/000000/000000?text=+) |

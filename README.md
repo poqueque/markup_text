@@ -22,7 +22,6 @@ c
 MarkupText("This is a (b)Markup(/b) example with (c deepPurple)a purple text(/c)")
 ```
 
-![](.README_images/75bd19ce.png)
 
 ### style
 
@@ -37,8 +36,8 @@ MarkupText(
             style: TextStyle(fontSize: 18),
           ),
 ```
-![](.README_images/ab34bf1c.png)
 
+![](.README_images/bef5d48d.png)
 
 ### Markup language
 

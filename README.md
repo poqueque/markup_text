@@ -67,14 +67,14 @@ MarkupText("This is an (u)underlined(/u) text")
 
 #### Links
 
-Use tag (a <url>)..(/a) to create links
+Use tag (a \<url\>)..(/a) to create links
 
 ```dart
 MarkupText("(a http://example.com)This is a link(/a)")
 ```
 #### Colors
 
-Use tag (c <color>)..(/c) to create colored text
+Use tag (c \<color\>)..(/c) to create colored text
 
 ```dart
 MarkupText("(c #ff0000)Colors from RGB codes(/c)")
@@ -83,7 +83,7 @@ MarkupText("(c #ff0000)Colors from RGB codes(/c)")
 MarkupText("(c amber)You can also use named colors(/c)")
 ```
 
-<color> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
+\<color\> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
 
 | Color Name | Color |
 | ------------- | :-----------: |

@@ -18,10 +18,10 @@ class App extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(16),
           child: MarkupText(
-            "This is (b)bold(/b) test (a http://flutter.dev)with a first link(/a)"
-            " and a simple (u)underlined(/u) text (a http://pub.dev)with"
-            " a second (i)italic(/i) link(/a) and a (c #ff0000)red (#ff0000)(/c) word"
-            " and a (c deepPurpleAccent)deepPurpleAccent(/c) one",
+            "This is a (b)bold(/b) text (a http://flutter.dev)with a link(/a),"
+            " an (u)underlined(/u) word (a http://pub.dev)with"
+            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)coloured(/c) words"
+            " (c deepPurpleAccent)here(/c) and (c green)there(/c).",
             style: TextStyle(fontSize: 18),
           ),
         ),

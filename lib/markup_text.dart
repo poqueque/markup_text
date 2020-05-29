@@ -9,7 +9,8 @@ class MarkupText extends StatelessWidget {
   final TextAlign textAlign;
   final TextStyle style;
 
-  const MarkupText(this.text, {Key key, this.textAlign = TextAlign.left, this.style})
+  const MarkupText(this.text,
+      {Key key, this.textAlign = TextAlign.left, this.style})
       : super(key: key);
 
   @override

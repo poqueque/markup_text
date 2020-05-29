@@ -20,7 +20,7 @@ class App extends StatelessWidget {
           child: MarkupText(
             "This is a (b)bold(/b) text (a http://flutter.dev)with a link(/a),"
             " an (u)underlined(/u) word (a http://pub.dev)with"
-            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)coloured(/c) words"
+            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)colored(/c) words"
             " (c deepPurpleAccent)here(/c) and (c green)there(/c).",
             style: TextStyle(fontSize: 18),
           ),

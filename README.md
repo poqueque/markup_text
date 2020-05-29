@@ -28,15 +28,13 @@ The `style` parameter works as with the `Text` widget. Styles defined will merge
 MarkupText(
             "This is a (b)bold(/b) text (a http://flutter.dev)with a link(/a),"
             " an (u)underlined(/u) word (a http://pub.dev)with"
-            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)coloured(/c) words"
+            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)colored(/c) words"
             " (c deepPurpleAccent)here(/c) and (c black87)there(/c).",
             style: TextStyle(fontSize: 18),
           ),
 ```
 
-
-![](.README_images/ba32bfa9.png)
-
+![](.README_images/6afd88aa.png)
 
 ### Markup language
 

@@ -1,6 +1,7 @@
 # markup_text
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+[![Version](https://img.shields.io/pub/v/markup_text.svg)](https://pub.dev/packages/markup_text)
 
 Flutter widget to use Markup to easily create formatted Text.
 

@@ -15,7 +15,6 @@ class MarkupText extends StatelessWidget {
   Widget build(BuildContext context) {
     List<TextPart> partList = [];
     String current = "";
-    int pointer = 0;
     List<TextType> currentTypes = [];
     String cUrl;
     String cColor;
@@ -37,9 +36,6 @@ class MarkupText extends StatelessWidget {
     }
 
     for (int pointer = 0; pointer < text.length; pointer++) {
-      List<TextType> newTypes = [];
-      String newUrl;
-      String newColor;
       if (text[pointer] == "(") {
         int end = text.indexOf(")", pointer);
         if (end > 0) {
@@ -145,7 +141,7 @@ class TextPart {
   }
 
   TextSpan toSpan() {
-    Color color;
+    Color cColor;
     TapGestureRecognizer recognizer;
     List<TextDecoration> decorations = [];
     FontWeight fontWeight = FontWeight.normal;
@@ -153,7 +149,7 @@ class TextPart {
     for (TextType type in types) {
       switch (type) {
         case TextType.link:
-          color = Colors.blue;
+          cColor = Colors.blue;
           decorations.add(TextDecoration.underline);
           if (url != null)
             recognizer = TapGestureRecognizer()
@@ -162,7 +158,10 @@ class TextPart {
               };
           break;
         case TextType.color:
-          color = Colors.blue; //TODO: Process color
+          if (color.startsWith("#"))
+            cColor = hexToColor(color);
+          else
+            cColor = nameToColor(color);
           break;
         case TextType.bold:
           fontWeight = FontWeight.bold;
@@ -181,7 +180,122 @@ class TextPart {
         style: TextStyle(
             fontStyle: fontStyle,
             fontWeight: fontWeight,
-            color: color,
+            color: cColor,
             decoration: TextDecoration.combine(decorations)));
+  }
+
+  Color hexToColor(String code) {
+    return new Color(int.parse(code.substring(1), radix: 16) + 0xFF000000);
+  }
+
+  // cat ~/dev/flutter/flutter/packages/flutter/lib/src/material/colors.dart | grep "static const" | grep -v _ | cut -f6 -d" " | awk '{print "case \"" $1 "\": return Colors." $1 ";"}'
+  Color nameToColor(String name) {
+    switch (name) {
+      case "transparent":
+        return Colors.transparent;
+      case "black":
+        return Colors.black;
+      case "black87":
+        return Colors.black87;
+      case "black54":
+        return Colors.black54;
+      case "black45":
+        return Colors.black45;
+      case "black38":
+        return Colors.black38;
+      case "black26":
+        return Colors.black26;
+      case "black12":
+        return Colors.black12;
+      case "white":
+        return Colors.white;
+      case "white70":
+        return Colors.white70;
+      case "white60":
+        return Colors.white60;
+      case "white54":
+        return Colors.white54;
+      case "white38":
+        return Colors.white38;
+      case "white30":
+        return Colors.white30;
+      case "white24":
+        return Colors.white24;
+      case "white12":
+        return Colors.white12;
+      case "white10":
+        return Colors.white10;
+      case "red":
+        return Colors.red;
+      case "redAccent":
+        return Colors.redAccent;
+      case "pink":
+        return Colors.pink;
+      case "pinkAccent":
+        return Colors.pinkAccent;
+      case "purple":
+        return Colors.purple;
+      case "purpleAccent":
+        return Colors.purpleAccent;
+      case "deepPurple":
+        return Colors.deepPurple;
+      case "deepPurpleAccent":
+        return Colors.deepPurpleAccent;
+      case "indigo":
+        return Colors.indigo;
+      case "indigoAccent":
+        return Colors.indigoAccent;
+      case "blue":
+        return Colors.blue;
+      case "blueAccent":
+        return Colors.blueAccent;
+      case "lightBlue":
+        return Colors.lightBlue;
+      case "lightBlueAccent":
+        return Colors.lightBlueAccent;
+      case "cyan":
+        return Colors.cyan;
+      case "cyanAccent":
+        return Colors.cyanAccent;
+      case "teal":
+        return Colors.teal;
+      case "tealAccent":
+        return Colors.tealAccent;
+      case "green":
+        return Colors.green;
+      case "greenAccent":
+        return Colors.greenAccent;
+      case "lightGreen":
+        return Colors.lightGreen;
+      case "lightGreenAccent":
+        return Colors.lightGreenAccent;
+      case "lime":
+        return Colors.lime;
+      case "limeAccent":
+        return Colors.limeAccent;
+      case "yellow":
+        return Colors.yellow;
+      case "yellowAccent":
+        return Colors.yellowAccent;
+      case "amber":
+        return Colors.amber;
+      case "amberAccent":
+        return Colors.amberAccent;
+      case "orange":
+        return Colors.orange;
+      case "orangeAccent":
+        return Colors.orangeAccent;
+      case "deepOrange":
+        return Colors.deepOrange;
+      case "deepOrangeAccent":
+        return Colors.deepOrangeAccent;
+      case "brown":
+        return Colors.brown;
+      case "grey":
+        return Colors.grey;
+      case "blueGrey":
+        return Colors.blueGrey;
+    }
+    return null;
   }
 }

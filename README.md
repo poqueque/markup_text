@@ -38,30 +38,40 @@ MarkupText(
 
 The following tags are recognized by the widget
 
-#### (b)Bold(/b)
+#### Bold
+
+Use tag (b)..(/b) for bold text
 
 ```dart
 MarkupText("This is a (b)bold(/b) text")
 ```
 
-#### (i)Italic(/i)
+#### Italic
+
+Use tag (i)..(/i) for italic text
 
 ```dart
 MarkupText("This is an (i)italic(/i) text")
 ```
 
-#### (u)Underlined(/u)
+#### Underlined
+
+Use tag (u)..(/u) for underlined text
 
 ```dart
 MarkupText("This is an (u)underlined(/u) text")
 ```
 
-#### (a http://example.com)Links(/a)
+#### Links
+
+Use tag (a <url>)..(/a) to create links
 
 ```dart
 MarkupText("(a http://example.com)This is a link(/a)")
 ```
-#### (c color)Colors(/c)
+#### Colors
+
+Use tag (c <color>)..(/c) to create colored text
 
 ```dart
 MarkupText("(c #ff0000)Colors from RGB codes(/c)")
@@ -70,7 +80,7 @@ MarkupText("(c #ff0000)Colors from RGB codes(/c)")
 MarkupText("(c amber)You can also use named colors(/c)")
 ```
 
-The tag (c) uses either a color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
+<color> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
 
 | Color Name | Color |
 | ------------- | :-----------: |

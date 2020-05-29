@@ -32,7 +32,10 @@ MarkupText(
             style: TextStyle(fontSize: 18),
           ),
 ```
-<img src=".README_images/ba32bfa9.png" width="300">
+
+
+![](.README_images/ba32bfa9.png)
+
 
 ### Markup language
 

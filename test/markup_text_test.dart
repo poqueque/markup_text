@@ -35,4 +35,17 @@ void main() {
     expect((textSpan.children[11] as TextSpan).style.color, Color.fromRGBO(255, 0, 0, 1));
     expect((textSpan.children[13] as TextSpan).style.color, Colors.deepPurpleAccent);
   });
+
+  testWidgets('MarkupText widget with icons', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(MarkupText(
+        "This is a test for the use of the alarm (icon access_alarm) icon."));
+    final richTextWidget =
+    tester.element(find.byType(RichText).first).widget as RichText;
+    final textSpan = richTextWidget.text as TextSpan;
+    expect(textSpan.children.length, 3);
+    expect((textSpan.children[0] as TextSpan).text, "This is a test for the use of the alarm ");
+    expect(((textSpan.children[1] as WidgetSpan).child as Icon).icon, Icons.access_alarm);
+    expect((textSpan.children[2] as TextSpan).text, " icon.");
+  });
 }

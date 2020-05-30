@@ -1,7 +1,10 @@
 library markup_text;
 
+import 'dart:ui' as ui show PlaceholderAlignment;
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:markup_text/src/markup_parser.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MarkupText extends StatelessWidget {
@@ -27,6 +30,11 @@ class MarkupText extends StatelessWidget {
             TextPart(current, url: cUrl, color: cColor)..addAll(currentTypes));
         current = "";
       }
+    }
+
+    addIconPart(String code, double size, String color) {
+      partList.add(TextPart("", icon: code, iconSize: size, color: color)
+        ..add(TextType.icon));
     }
 
     addType(TextType t) {
@@ -105,6 +113,12 @@ class MarkupText extends StatelessWidget {
                 pointer += code.length + 1;
                 break;
               }
+              if (code.startsWith("icon ")) {
+                addPart();
+                addIconPart(code.substring(5), style?.fontSize ?? 14, cColor);
+                pointer += code.length + 1;
+                break;
+              }
               current += text[pointer];
           }
         } else
@@ -124,15 +138,17 @@ class MarkupText extends StatelessWidget {
   }
 }
 
-enum TextType { link, bold, italic, underlined, color }
+enum TextType { link, bold, italic, underlined, color, icon }
 
 class TextPart {
   final String text;
   final String url;
   final String color;
+  final String icon;
+  final double iconSize;
   final List<TextType> types = [];
 
-  TextPart(this.text, {this.url, this.color});
+  TextPart(this.text, {this.url, this.color, this.icon, this.iconSize});
 
   add(TextType type) {
     types.add(type);
@@ -142,7 +158,7 @@ class TextPart {
     for (TextType type in currentTypes) types.add(type);
   }
 
-  TextSpan toSpan() {
+  InlineSpan toSpan() {
     Color cColor;
     TapGestureRecognizer recognizer;
     List<TextDecoration> decorations = [];
@@ -161,9 +177,9 @@ class TextPart {
           break;
         case TextType.color:
           if (color.startsWith("#"))
-            cColor = hexToColor(color);
+            cColor = MarkupParser.hexToColor(color);
           else
-            cColor = nameToColor(color);
+            cColor = MarkupParser.nameToColor(color);
           break;
         case TextType.bold:
           fontWeight = FontWeight.bold;
@@ -174,6 +190,23 @@ class TextPart {
         case TextType.underlined:
           decorations.add(TextDecoration.underline);
           break;
+        case TextType.icon:
+          IconData iconData = MarkupParser.getIconData(icon);
+          if (color != null) {
+            if (color.startsWith("#"))
+              cColor = MarkupParser.hexToColor(color);
+            else
+              cColor = MarkupParser.nameToColor(color);
+          }
+          if (iconData != null) {
+            return WidgetSpan(
+              alignment: ui.PlaceholderAlignment.middle,
+              child: Icon(iconData,
+                  textDirection: TextDirection.ltr,
+                  size: iconSize,
+                  color: cColor),
+            );
+          }
       }
     }
     return TextSpan(
@@ -184,120 +217,5 @@ class TextPart {
             fontWeight: fontWeight,
             color: cColor,
             decoration: TextDecoration.combine(decorations)));
-  }
-
-  Color hexToColor(String code) {
-    return new Color(int.parse(code.substring(1), radix: 16) + 0xFF000000);
-  }
-
-  // cat ~/dev/flutter/flutter/packages/flutter/lib/src/material/colors.dart | grep "static const" | grep -v _ | cut -f6 -d" " | awk '{print "case \"" $1 "\": return Colors." $1 ";"}'
-  Color nameToColor(String name) {
-    switch (name) {
-      case "transparent":
-        return Colors.transparent;
-      case "black":
-        return Colors.black;
-      case "black87":
-        return Colors.black87;
-      case "black54":
-        return Colors.black54;
-      case "black45":
-        return Colors.black45;
-      case "black38":
-        return Colors.black38;
-      case "black26":
-        return Colors.black26;
-      case "black12":
-        return Colors.black12;
-      case "white":
-        return Colors.white;
-      case "white70":
-        return Colors.white70;
-      case "white60":
-        return Colors.white60;
-      case "white54":
-        return Colors.white54;
-      case "white38":
-        return Colors.white38;
-      case "white30":
-        return Colors.white30;
-      case "white24":
-        return Colors.white24;
-      case "white12":
-        return Colors.white12;
-      case "white10":
-        return Colors.white10;
-      case "red":
-        return Colors.red;
-      case "redAccent":
-        return Colors.redAccent;
-      case "pink":
-        return Colors.pink;
-      case "pinkAccent":
-        return Colors.pinkAccent;
-      case "purple":
-        return Colors.purple;
-      case "purpleAccent":
-        return Colors.purpleAccent;
-      case "deepPurple":
-        return Colors.deepPurple;
-      case "deepPurpleAccent":
-        return Colors.deepPurpleAccent;
-      case "indigo":
-        return Colors.indigo;
-      case "indigoAccent":
-        return Colors.indigoAccent;
-      case "blue":
-        return Colors.blue;
-      case "blueAccent":
-        return Colors.blueAccent;
-      case "lightBlue":
-        return Colors.lightBlue;
-      case "lightBlueAccent":
-        return Colors.lightBlueAccent;
-      case "cyan":
-        return Colors.cyan;
-      case "cyanAccent":
-        return Colors.cyanAccent;
-      case "teal":
-        return Colors.teal;
-      case "tealAccent":
-        return Colors.tealAccent;
-      case "green":
-        return Colors.green;
-      case "greenAccent":
-        return Colors.greenAccent;
-      case "lightGreen":
-        return Colors.lightGreen;
-      case "lightGreenAccent":
-        return Colors.lightGreenAccent;
-      case "lime":
-        return Colors.lime;
-      case "limeAccent":
-        return Colors.limeAccent;
-      case "yellow":
-        return Colors.yellow;
-      case "yellowAccent":
-        return Colors.yellowAccent;
-      case "amber":
-        return Colors.amber;
-      case "amberAccent":
-        return Colors.amberAccent;
-      case "orange":
-        return Colors.orange;
-      case "orangeAccent":
-        return Colors.orangeAccent;
-      case "deepOrange":
-        return Colors.deepOrange;
-      case "deepOrangeAccent":
-        return Colors.deepOrangeAccent;
-      case "brown":
-        return Colors.brown;
-      case "grey":
-        return Colors.grey;
-      case "blueGrey":
-        return Colors.blueGrey;
-    }
-    return null;
   }
 }

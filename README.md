@@ -19,22 +19,27 @@ Flutter widget to use Markup to easily create formatted Text.
 MarkupText("This is a (b)Markup(/b) example with (c deepPurple)a purple text(/c)")
 ```
 
-
 ### style
 
 The `style` parameter works as with the `Text` widget. Styles defined will merge with default Style for Text.
 
 ```dart
-MarkupText(
-            "This is a (b)bold(/b) text (a http://flutter.dev)with a link(/a),"
-            " an (u)underlined(/u) word (a http://pub.dev)with"
-            " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)colored(/c) words"
-            " (c deepPurpleAccent)here(/c) and (c green)there(/c).",
-            style: TextStyle(fontSize: 18),
-          ),
+  MarkupText(
+    "This is a (b)bold(/b) text (a http://flutter.dev)with a link(/a),"
+    " an (u)underlined(/u) word (a http://pub.dev)with"
+    " a second link containing a word in (i)italics(/i)(/a) and (c #ff0000)colored(/c) words"
+    " (c deepPurpleAccent)here(/c) and (c green)there(/c).",
+    style: TextStyle(fontSize: 18),
+  ),
+
+  MarkupText(
+    "(c purple)(icon flight_takeoff) Departures(/c)\n"
+    "(c teal)(icon flight_land) Arrivals(/c)",
+    style: TextStyle(fontSize: 18),
+  ),
 ```
 
-![](.README_images/6afd88aa.png)
+![](.README_images/95c88bfa.png)
 
 ### Markup language
 
@@ -81,6 +86,21 @@ MarkupText("(c #ff0000)Colors from RGB codes(/c)")
 ```dart
 MarkupText("(c amber)You can also use named colors(/c)")
 ```
+You can use all the colors included in the [Material `Colors` class from Flutter](https://api.flutter.dev/flutter/material/Colors-class.html#constants).
+You can check the full list [below](#Colors list).
+
+#### Icons
+
+Use tag (icon \<icon name\>) to insert an icon. The icon will be colored when affected by a color tag.
+
+```dart
+MarkupText("(c red)(icon error) An error has occurred(/c)")
+```
+
+You can use all the icons included in the [Material `Icons` class from Flutter](https://api.flutter.dev/flutter/material/Icons-class.html#constants).
+
+
+## Colors list
 
 \<color\> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
 

@@ -87,7 +87,7 @@ MarkupText("(c #ff0000)Colors from RGB codes(/c)")
 MarkupText("(c amber)You can also use named colors(/c)")
 ```
 You can use all the colors included in the [Material `Colors` class from Flutter](https://api.flutter.dev/flutter/material/Colors-class.html#constants).
-You can check the full list [below](#Colors list).
+You can check the full list [below](#colors-list).
 
 #### Icons
 

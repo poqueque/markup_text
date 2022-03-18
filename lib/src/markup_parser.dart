@@ -744,7 +744,7 @@ class MarkupParser {
       case "picture_in_picture": return Icons.picture_in_picture;
       case "picture_in_picture_alt": return Icons.picture_in_picture_alt;
       case "pie_chart": return Icons.pie_chart;
-      case "pie_chart_outlined": return Icons.pie_chart_outlined;
+      case "pie_chart_outline": return Icons.pie_chart_outline;
       case "pin_drop": return Icons.pin_drop;
       case "place": return Icons.place;
       case "play_arrow": return Icons.play_arrow;

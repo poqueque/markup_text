@@ -7,18 +7,24 @@ import 'package:flutter/material.dart';
 import 'package:markup_text/src/markup_parser.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// MarkupText Widget is a wrapper for RichText that simplifies the creation of text with mixed styles.
 class MarkupText extends StatelessWidget {
+
+  /// The text with markup
   final String text;
+  /// Alignment for the widget. TextAlign.left by default.
   final TextAlign textAlign;
+  /// The style parameter works as with the Text widget. Styles defined will merge with default Style for Text.
   final TextStyle style;
 
+  /// MarkupText Widget constructor.
   const MarkupText(this.text,
       {Key key, this.textAlign = TextAlign.left, this.style})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<TextPart> partList = [];
+    List<_TextPart> partList = [];
     String current = "";
     List<TextType> currentTypes = [];
     String cUrl;
@@ -27,13 +33,13 @@ class MarkupText extends StatelessWidget {
     addPart() {
       if (current != "") {
         partList.add(
-            TextPart(current, url: cUrl, color: cColor)..addAll(currentTypes));
+            _TextPart(current, url: cUrl, color: cColor)..addAll(currentTypes));
         current = "";
       }
     }
 
     addIconPart(String code, double size, String color) {
-      partList.add(TextPart("", icon: code, iconSize: size, color: color)
+      partList.add(_TextPart("", icon: code, iconSize: size, color: color)
         ..add(TextType.icon));
     }
 
@@ -140,7 +146,7 @@ class MarkupText extends StatelessWidget {
 
 enum TextType { link, bold, italic, underlined, color, icon }
 
-class TextPart {
+class _TextPart {
   final String text;
   final String url;
   final String color;
@@ -148,7 +154,7 @@ class TextPart {
   final double iconSize;
   final List<TextType> types = [];
 
-  TextPart(this.text, {this.url, this.color, this.icon, this.iconSize});
+  _TextPart(this.text, {this.url, this.color, this.icon, this.iconSize});
 
   add(TextType type) {
     types.add(type);

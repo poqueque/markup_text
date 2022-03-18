@@ -102,7 +102,7 @@ You can use all the icons included in the [Material `Icons` class from Flutter](
 
 ## Colors list
 
-\<color\> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter class Colors:
+\<color\> can be either a RGB color code started with `#` or a named color. Valid names are the ones defined on the Flutter Colors class:
 
 | Color Name | Color |
 | ------------- | :-----------: |

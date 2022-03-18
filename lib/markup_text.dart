@@ -15,11 +15,11 @@ class MarkupText extends StatelessWidget {
   /// Alignment for the widget. TextAlign.left by default.
   final TextAlign textAlign;
   /// The style parameter works as with the Text widget. Styles defined will merge with default Style for Text.
-  final TextStyle style;
+  final TextStyle? style;
 
   /// MarkupText Widget constructor.
   const MarkupText(this.text,
-      {Key key, this.textAlign = TextAlign.left, this.style})
+      {Key? key, this.textAlign = TextAlign.left, this.style})
       : super(key: key);
 
   @override
@@ -27,8 +27,8 @@ class MarkupText extends StatelessWidget {
     List<_TextPart> partList = [];
     String current = "";
     List<TextType> currentTypes = [];
-    String cUrl;
-    String cColor;
+    String? cUrl;
+    String? cColor;
 
     addPart() {
       if (current != "") {
@@ -38,7 +38,7 @@ class MarkupText extends StatelessWidget {
       }
     }
 
-    addIconPart(String code, double size, String color) {
+    addIconPart(String code, double size, String? color) {
       partList.add(_TextPart("", icon: code, iconSize: size, color: color)
         ..add(TextType.icon));
     }
@@ -148,10 +148,10 @@ enum TextType { link, bold, italic, underlined, color, icon }
 
 class _TextPart {
   final String text;
-  final String url;
-  final String color;
-  final String icon;
-  final double iconSize;
+  final String? url;
+  final String? color;
+  final String? icon;
+  final double? iconSize;
   final List<TextType> types = [];
 
   _TextPart(this.text, {this.url, this.color, this.icon, this.iconSize});
@@ -165,8 +165,8 @@ class _TextPart {
   }
 
   InlineSpan toSpan() {
-    Color cColor;
-    TapGestureRecognizer recognizer;
+    Color? cColor;
+    TapGestureRecognizer? recognizer;
     List<TextDecoration> decorations = [];
     FontWeight fontWeight = FontWeight.normal;
     FontStyle fontStyle = FontStyle.normal;
@@ -178,12 +178,12 @@ class _TextPart {
           if (url != null)
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
-                if (await canLaunch(url)) launch(url);
+                if (await canLaunch(url!)) launch(url!);
               };
           break;
         case TextType.color:
-          if (color.startsWith("#"))
-            cColor = MarkupParser.hexToColor(color);
+          if (color!.startsWith("#"))
+            cColor = MarkupParser.hexToColor(color!);
           else
             cColor = MarkupParser.nameToColor(color);
           break;
@@ -197,10 +197,10 @@ class _TextPart {
           decorations.add(TextDecoration.underline);
           break;
         case TextType.icon:
-          IconData iconData = MarkupParser.getIconData(icon);
+          IconData? iconData = MarkupParser.getIconData(icon);
           if (color != null) {
-            if (color.startsWith("#"))
-              cColor = MarkupParser.hexToColor(color);
+            if (color!.startsWith("#"))
+              cColor = MarkupParser.hexToColor(color!);
             else
               cColor = MarkupParser.nameToColor(color);
           }

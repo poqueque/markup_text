@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:markup_text/markup_text.dart';
 
@@ -14,26 +13,26 @@ void main() {
     final richTextWidget =
         tester.element(find.byType(RichText)).widget as RichText;
     final textSpan = richTextWidget.text as TextSpan;
-    expect(textSpan.children.length, 15);
-    expect((textSpan.children[0] as TextSpan).text, "This is ");
-    expect((textSpan.children[3] as TextSpan).text, "with a first link");
+    expect(textSpan.children!.length, 15);
+    expect((textSpan.children![0] as TextSpan).text, "This is ");
+    expect((textSpan.children![3] as TextSpan).text, "with a first link");
     expect(
-        (textSpan.children[3] as TextSpan).style.fontStyle, FontStyle.normal);
-    expect((textSpan.children[3] as TextSpan).style.decoration,
+        (textSpan.children![3] as TextSpan).style!.fontStyle, FontStyle.normal);
+    expect((textSpan.children![3] as TextSpan).style!.decoration,
         TextDecoration.underline);
-    expect((textSpan.children[5] as TextSpan).style.decoration,
+    expect((textSpan.children![5] as TextSpan).style!.decoration,
         TextDecoration.underline);
-    expect((textSpan.children[7] as TextSpan).style.decoration,
+    expect((textSpan.children![7] as TextSpan).style!.decoration,
         TextDecoration.underline);
-    expect((textSpan.children[8] as TextSpan).style.decoration,
+    expect((textSpan.children![8] as TextSpan).style!.decoration,
         TextDecoration.underline);
-    expect((textSpan.children[9] as TextSpan).style.decoration,
+    expect((textSpan.children![9] as TextSpan).style!.decoration,
         TextDecoration.underline);
-    expect((textSpan.children[4] as TextSpan).recognizer, null);
-    expect((textSpan.children[4] as TextSpan).recognizer, null);
-    expect((textSpan.children[9] as TextSpan).recognizer, isNot(null));
-    expect((textSpan.children[11] as TextSpan).style.color, Color.fromRGBO(255, 0, 0, 1));
-    expect((textSpan.children[13] as TextSpan).style.color, Colors.deepPurpleAccent);
+    expect((textSpan.children![4] as TextSpan).recognizer, null);
+    expect((textSpan.children![4] as TextSpan).recognizer, null);
+    expect((textSpan.children![9] as TextSpan).recognizer, isNot(null));
+    expect((textSpan.children![11] as TextSpan).style!.color, Color.fromRGBO(255, 0, 0, 1));
+    expect((textSpan.children![13] as TextSpan).style!.color, Colors.deepPurpleAccent);
   });
 
   testWidgets('MarkupText widget with icons', (WidgetTester tester) async {
@@ -43,9 +42,9 @@ void main() {
     final richTextWidget =
     tester.element(find.byType(RichText).first).widget as RichText;
     final textSpan = richTextWidget.text as TextSpan;
-    expect(textSpan.children.length, 3);
-    expect((textSpan.children[0] as TextSpan).text, "This is a test for the use of the alarm ");
-    expect(((textSpan.children[1] as WidgetSpan).child as Icon).icon, Icons.access_alarm);
-    expect((textSpan.children[2] as TextSpan).text, " icon.");
+    expect(textSpan.children!.length, 3);
+    expect((textSpan.children![0] as TextSpan).text, "This is a test for the use of the alarm ");
+    expect(((textSpan.children![1] as WidgetSpan).child as Icon).icon, Icons.access_alarm);
+    expect((textSpan.children![2] as TextSpan).text, " icon.");
   });
 }

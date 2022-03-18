@@ -9,7 +9,7 @@ class MarkupParser {
 
   // @formatter:off
   // cat ~/development/flutter/flutter/packages/flutter/lib/src/material/colors.dart | grep "static const" | grep -v _ | cut -f6 -d" " | awk '{print "case \"" $1 "\": return Colors." $1 ";"}'
-  static Color nameToColor(String name) {
+  static Color? nameToColor(String? name) {
     switch (name) {
       case "transparent": return Colors.transparent;
       case "black": return Colors.black;
@@ -69,7 +69,7 @@ class MarkupParser {
 
   //@formatter:off
   // cat ~/development/flutter/packages/flutter/lib/src/material/icons.dart | grep "static const" | cut -f6 -d" " | awk '{print "case \"" $1 "\": return Icons." $1 ";"}'
-  static IconData getIconData(String name) {
+  static IconData? getIconData(String? name) {
     switch (name) {
       case "ten_k": return Icons.ten_k;
       case "ten_k_sharp": return Icons.ten_k_sharp;

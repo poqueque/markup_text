@@ -1,3 +1,8 @@
+## 1.0.1 - 19 Ago 2022
+
+* Icon list updated to last stable version (Flutter 3.0.5)
+* Updated dependencies
+
 ## 1.0.0 - 18 Mar 2022
 
 * Null Safety

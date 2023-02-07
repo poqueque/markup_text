@@ -9,11 +9,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// MarkupText Widget is a wrapper for RichText that simplifies the creation of text with mixed styles.
 class MarkupText extends StatelessWidget {
-
   /// The text with markup
   final String text;
+
   /// Alignment for the widget. TextAlign.left by default.
   final TextAlign textAlign;
+
   /// The style parameter works as with the Text widget. Styles defined will merge with default Style for Text.
   final TextStyle? style;
 
@@ -178,7 +179,8 @@ class _TextPart {
           if (url != null)
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
-                if (await canLaunch(url!)) launch(url!);
+                if (await canLaunchUrl(Uri.parse(url!)))
+                  launchUrl(Uri.parse(url!));
               };
           break;
         case TextType.color:

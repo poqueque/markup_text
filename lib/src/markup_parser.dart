@@ -2121,6 +2121,12 @@ class MarkupParser {
         return Icons.bedtime_outlined;
       case "bedtime_off":
         return Icons.bedtime_off;
+    }
+    return _getIconData2(name);
+  }
+
+  static IconData? _getIconData2(String? name) {
+    switch (name) {
       case "bedtime_off_sharp":
         return Icons.bedtime_off_sharp;
       case "bedtime_off_rounded":
@@ -4111,6 +4117,12 @@ class MarkupParser {
         return Icons.currency_yen;
       case "currency_yen_sharp":
         return Icons.currency_yen_sharp;
+    }
+    return _getIconData3(name);
+  }
+
+  static IconData? _getIconData3(String? name) {
+    switch (name) {
       case "currency_yen_rounded":
         return Icons.currency_yen_rounded;
       case "currency_yen_outlined":
@@ -6107,6 +6119,12 @@ class MarkupParser {
         return Icons.filter_6_rounded;
       case "filter_6_outlined":
         return Icons.filter_6_outlined;
+    }
+    return _getIconData4(name);
+  }
+
+  static IconData? _getIconData4(String? name) {
+    switch (name) {
       case "filter_7":
         return Icons.filter_7;
       case "filter_7_sharp":
@@ -8099,6 +8117,12 @@ class MarkupParser {
         return Icons.integration_instructions;
       case "integration_instructions_sharp":
         return Icons.integration_instructions_sharp;
+    }
+    return _getIconData5(name);
+  }
+
+  static IconData? _getIconData5(String? name) {
+    switch (name) {
       case "integration_instructions_rounded":
         return Icons.integration_instructions_rounded;
       case "integration_instructions_outlined":
@@ -10093,6 +10117,12 @@ class MarkupParser {
         return Icons.multiple_stop;
       case "multiple_stop_sharp":
         return Icons.multiple_stop_sharp;
+    }
+    return _getIconData6(name);
+  }
+
+  static IconData? _getIconData6(String? name) {
+    switch (name) {
       case "multiple_stop_rounded":
         return Icons.multiple_stop_rounded;
       case "multiple_stop_outlined":
@@ -12085,6 +12115,12 @@ class MarkupParser {
         return Icons.present_to_all_outlined;
       case "preview":
         return Icons.preview;
+    }
+    return _getIconData7(name);
+  }
+
+  static IconData? _getIconData7(String? name) {
+    switch (name) {
       case "preview_sharp":
         return Icons.preview_sharp;
       case "preview_rounded":
@@ -14079,6 +14115,12 @@ class MarkupParser {
         return Icons.signal_wifi_statusbar_connected_no_internet_4;
       case "signal_wifi_statusbar_connected_no_internet_4_sharp":
         return Icons.signal_wifi_statusbar_connected_no_internet_4_sharp;
+    }
+    return _getIconData8(name);
+  }
+
+  static IconData? _getIconData8(String? name) {
+    switch (name) {
       case "signal_wifi_statusbar_connected_no_internet_4_rounded":
         return Icons.signal_wifi_statusbar_connected_no_internet_4_rounded;
       case "signal_wifi_statusbar_connected_no_internet_4_outlined":
@@ -16071,6 +16113,12 @@ class MarkupParser {
         return Icons.trending_flat_sharp;
       case "trending_flat_rounded":
         return Icons.trending_flat_rounded;
+    }
+    return _getIconData9(name);
+  }
+
+  static IconData? _getIconData9(String? name) {
+    switch (name) {
       case "trending_flat_outlined":
         return Icons.trending_flat_outlined;
       case "trending_neutral":

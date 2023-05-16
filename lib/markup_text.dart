@@ -18,15 +18,19 @@ class MarkupText extends StatelessWidget {
   /// The style parameter works as with the Text widget. Styles defined will merge with default Style for Text.
   final TextStyle? style;
 
+  // {colors: {key: val, ...}, sizes: {key: val, ...}}
+  final Map? cfg;
+
   /// MarkupText Widget constructor.
   const MarkupText(this.text,
-      {Key? key, this.textAlign = TextAlign.left, this.style})
+      {Key? key, this.textAlign = TextAlign.left, this.style, this.cfg})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<_TextPart> partList = [];
     String current = "";
+    double? cSize;
     List<TextType> currentTypes = [];
     String? cUrl;
     String? cColor;
@@ -34,13 +38,13 @@ class MarkupText extends StatelessWidget {
     addPart() {
       if (current != "") {
         partList.add(
-            _TextPart(current, url: cUrl, color: cColor)..addAll(currentTypes));
+            _TextPart(current, fontSize: cSize, url: cUrl, color: cColor)..addAll(currentTypes));
         current = "";
       }
     }
 
     addIconPart(String code, double size, String? color) {
-      partList.add(_TextPart("", icon: code, iconSize: size, color: color)
+      partList.add(_TextPart("", fontSize: null, icon: code, iconSize: size, color: color)
         ..add(TextType.icon));
     }
 
@@ -105,6 +109,11 @@ class MarkupText extends StatelessWidget {
               cColor = null;
               pointer += 3;
               break;
+            case "/s":
+              addPart();
+              cSize = null;
+              pointer += 3;
+              break;
             default:
               if (code.startsWith("a ")) {
                 addPart();
@@ -117,12 +126,22 @@ class MarkupText extends StatelessWidget {
                 addPart();
                 addType(TextType.color);
                 cColor = code.substring(2);
+                cColor = cfg?['colors']?[cColor] ?? cColor;
+                cColor = cColor=='' ? null : cColor;
                 pointer += code.length + 1;
                 break;
               }
               if (code.startsWith("icon ")) {
                 addPart();
                 addIconPart(code.substring(5), style?.fontSize ?? 14, cColor);
+                pointer += code.length + 1;
+                break;
+              }
+              if (code.startsWith("s ")) {
+                addPart();
+                String sizeStr = code.substring(2);
+                sizeStr = cfg?['sizes']?[sizeStr] ?? sizeStr;
+                cSize = sizeStr=='' ? null : double.parse(sizeStr);
                 pointer += code.length + 1;
                 break;
               }
@@ -149,13 +168,14 @@ enum TextType { link, bold, italic, underlined, color, icon }
 
 class _TextPart {
   final String text;
+  final double? fontSize;
   final String? url;
   final String? color;
   final String? icon;
   final double? iconSize;
   final List<TextType> types = [];
 
-  _TextPart(this.text, {this.url, this.color, this.icon, this.iconSize});
+  _TextPart(this.text, {this.fontSize, this.url, this.color, this.icon, this.iconSize});
 
   add(TextType type) {
     types.add(type);
@@ -221,9 +241,24 @@ class _TextPart {
         text: this.text,
         recognizer: recognizer,
         style: TextStyle(
+            fontSize: fontSize,
             fontStyle: fontStyle,
             fontWeight: fontWeight,
             color: cColor,
             decoration: TextDecoration.combine(decorations)));
+  }
+}
+
+class MarkupParserHelper {
+  static Color? toColor(String? nameOrHexColor) {
+    if (nameOrHexColor == null) {
+      return null;
+    }
+    if (nameOrHexColor.startsWith("#")) {
+      return MarkupParser.hexToColor(nameOrHexColor);
+    }
+    else {
+      return MarkupParser.nameToColor(nameOrHexColor);
+    }
   }
 }

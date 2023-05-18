@@ -179,8 +179,11 @@ class _TextPart {
           if (url != null)
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
-                if (await canLaunchUrl(Uri.parse(url!)))
-                  launchUrl(Uri.parse(url!));
+                try {
+                  await launchUrl(Uri.parse(url!));
+                } catch (e) {
+                  debugPrint(e.toString());
+                }
               };
           break;
         case TextType.color:

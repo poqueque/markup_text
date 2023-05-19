@@ -1,4 +1,10 @@
-## 1.0.2 - 7 Feb 2022
+## 1.0.3 - 18 May 2023
+
+* Icon list updated to last stable version (Flutter 3.10.1)
+* Updated dependencies
+* Fixed issue [#2](https://github.com/poqueque/markup_text/issues/2)
+
+* ## 1.0.2 - 7 Feb 2022
 
 * Icon list updated to last stable version (Flutter 3.7.0)
 * Updated dependencies

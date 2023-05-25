@@ -1,12 +1,13 @@
 name: markup_text
 description: Flutter widget to use Markup to easily create formatted Text with colors, style and links.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/poqueque/markup_text
 # To publish new versions first run: dart pub publish --dry-run
 # then run: dart pub publish
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
+  flutter: '>=3.10.0'
 
 dependencies:
   flutter:

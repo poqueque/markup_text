@@ -1,3 +1,7 @@
+## 1.0.4 - 25 May 2023
+
+* Updated minimum version to Flutter 3.10.0
+
 ## 1.0.3 - 18 May 2023
 
 * Icon list updated to last stable version (Flutter 3.10.1)

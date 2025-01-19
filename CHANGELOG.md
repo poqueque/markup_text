@@ -1,7 +1,7 @@
 ## 1.0.5 - 19 Jan 2025
 
 * Updated example app
-* Added some kind of minimum migration from html tags to markup_text tags (<a href="url"> => (a url), <b> => (b), ...)
+* Added some kind of automatic translation from html tags to markup_text tags (<a href="url"> => (a url), <b> => (b), ...)
 
 ## 1.0.4 - 25 May 2023
 

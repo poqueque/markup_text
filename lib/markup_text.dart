@@ -30,6 +30,11 @@ class MarkupText extends StatelessWidget {
     List<TextType> currentTypes = [];
     String? cUrl;
     String? cColor;
+    String textToShow = text;
+
+    for (var r in MarkupParser.htmlReplacements.entries) {
+      textToShow = textToShow.replaceAll(r.key, r.value);
+    }
 
     addPart() {
       if (current != "") {
@@ -52,11 +57,13 @@ class MarkupText extends StatelessWidget {
       if (currentTypes.contains(t)) currentTypes.remove(t);
     }
 
-    for (int pointer = 0; pointer < text.length; pointer++) {
-      if (text[pointer] == "(") {
-        int end = text.indexOf(")", pointer);
+    textToShow = textToShow.replaceAll("<b>", "(b)");
+
+    for (int pointer = 0; pointer < textToShow.length; pointer++) {
+      if (textToShow[pointer] == "(") {
+        int end = textToShow.indexOf(")", pointer);
         if (end > 0) {
-          String code = text.substring(pointer + 1, end);
+          String code = textToShow.substring(pointer + 1, end);
           switch (code) {
             case "b":
               addPart();
@@ -81,11 +88,6 @@ class MarkupText extends StatelessWidget {
             case "/i":
               addPart();
               removeType(TextType.italic);
-              pointer += 3;
-              break;
-            case "/u":
-              addPart();
-              removeType(TextType.underlined);
               pointer += 3;
               break;
             case "/u":
@@ -126,12 +128,14 @@ class MarkupText extends StatelessWidget {
                 pointer += code.length + 1;
                 break;
               }
-              current += text[pointer];
+              current += textToShow[pointer];
           }
-        } else
-          current += text[pointer];
-      } else
-        current += text[pointer];
+        } else {
+          current += textToShow[pointer];
+        }
+      } else {
+        current += textToShow[pointer];
+      }
     }
     addPart();
 
@@ -162,7 +166,9 @@ class _TextPart {
   }
 
   addAll(List<TextType> currentTypes) {
-    for (TextType type in currentTypes) types.add(type);
+    for (TextType type in currentTypes) {
+      types.add(type);
+    }
   }
 
   InlineSpan toSpan() {
@@ -176,7 +182,7 @@ class _TextPart {
         case TextType.link:
           cColor = Colors.blue;
           decorations.add(TextDecoration.underline);
-          if (url != null)
+          if (url != null) {
             recognizer = TapGestureRecognizer()
               ..onTap = () async {
                 try {
@@ -185,12 +191,14 @@ class _TextPart {
                   debugPrint(e.toString());
                 }
               };
+          }
           break;
         case TextType.color:
-          if (color!.startsWith("#"))
+          if (color!.startsWith("#")) {
             cColor = MarkupParser.hexToColor(color!);
-          else
+          } else {
             cColor = MarkupParser.nameToColor(color);
+          }
           break;
         case TextType.bold:
           fontWeight = FontWeight.bold;
@@ -204,10 +212,11 @@ class _TextPart {
         case TextType.icon:
           IconData? iconData = MarkupParser.getIconData(icon);
           if (color != null) {
-            if (color!.startsWith("#"))
+            if (color!.startsWith("#")) {
               cColor = MarkupParser.hexToColor(color!);
-            else
+            } else {
               cColor = MarkupParser.nameToColor(color);
+            }
           }
           if (iconData != null) {
             return WidgetSpan(
@@ -221,7 +230,7 @@ class _TextPart {
       }
     }
     return TextSpan(
-        text: this.text,
+        text: text,
         recognizer: recognizer,
         style: TextStyle(
             fontStyle: fontStyle,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class MarkupParser {
   static Color hexToColor(String code) {
-    return new Color(int.parse(code.substring(1), radix: 16) + 0xFF000000);
+    return Color(int.parse(code.substring(1), radix: 16) + 0xFF000000);
   }
 
   static Color? nameToColor(String? name) {
@@ -16,6 +16,31 @@ class MarkupParser {
     if (name == null) return null;
     return iconData[name];
   }
+
+  static Map<String, String> htmlReplacements = {
+    "<b>": "(b)",
+    "</b>": "(/b)",
+    "<i>": "(i)",
+    "</i>": "(/i)",
+    "<u>": "(u)",
+    "</u>": "(/u)",
+    "<a href=\"": "(a ",
+    "<a href='": "(a ",
+    "\">": ")",
+    "'>": ")",
+    "</a>": "(/a)",
+    "<font color=\"": "(c ",
+    "<font color='": "(c ",
+    "</font>": "(/c)",
+    "<br><br>": "\n",
+    "<br/><br/>": "\n",
+    "\n<br>": "\n",
+    "\n<br/>": "\n",
+    "<br>\n": "\n",
+    "<br/>\n": "\n",
+    "<br>": "\n",
+    "<br/>": "\n",
+  };
 
   // cat ~/development/flutter/packages/flutter/lib/src/material/colors.dart | grep "static const" | grep -v _ | cut -f6 -d" " | awk '{print "\"" $1 "\": Colors." $1 ","}'
   static Map<String, Color> colors = {

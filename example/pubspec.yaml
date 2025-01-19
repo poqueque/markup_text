@@ -1,5 +1,6 @@
 name: example
 description: MarkupText Example
+publish_to: 'none'
 
 version: 1.0.0
 

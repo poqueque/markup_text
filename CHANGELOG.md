@@ -1,3 +1,8 @@
+## 1.0.5 - 19 Jan 2025
+
+* Updated example app
+* Added some kind of minimum migration from html tags to markup_text tags (<a href="url"> => (a url), <b> => (b), ...)
+
 ## 1.0.4 - 25 May 2023
 
 * Updated minimum version to Flutter 3.10.0
@@ -8,7 +13,7 @@
 * Updated dependencies
 * Fixed issue [#2](https://github.com/poqueque/markup_text/issues/2)
 
-* ## 1.0.2 - 7 Feb 2022
+## 1.0.2 - 7 Feb 2022
 
 * Icon list updated to last stable version (Flutter 3.7.0)
 * Updated dependencies
